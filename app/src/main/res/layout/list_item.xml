@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Copyright (C) 2019 The CSC 240 Instructors & Students.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/city_lbl"
+        android:layout_width="85sp"
+        android:layout_height="wrap_content"
+        android:text="@string/city" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/city_lbl" />
+
+    <TextView
+        android:id="@+id/lat_lbl"
+        android:layout_width="85sp"
+        android:layout_height="wrap_content"
+        android:text="@string/lat"
+        android:layout_below="@id/city_lbl"/>
+
+    <TextView
+        android:id="@+id/latitude"
+        android:layout_width="70sp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/city_lbl"
+        android:layout_toRightOf="@id/lat_lbl"/>
+
+    <TextView
+        android:id="@+id/lon_lbl"
+        android:layout_width="85sp"
+        android:layout_height="wrap_content"
+        android:text="@string/lon"
+        android:layout_below="@id/city_lbl"
+        android:layout_toRightOf="@id/latitude"/>
+
+    <TextView
+        android:id="@+id/longitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/city_lbl"
+        android:layout_toRightOf="@id/lon_lbl"/>
+
+    <TextView
+        android:id="@+id/temp_lbl"
+        android:layout_width="85sp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lat_lbl"
+        android:text="@string/day" />
+
+    <TextView
+        android:id="@+id/temperature"
+        android:layout_width="40sp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lat_lbl"
+        android:layout_toRightOf="@id/temp_lbl" />
+
+    <TextView
+        android:id="@+id/min_temp_lbl"
+        android:layout_width="85sp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lat_lbl"
+        android:text="@string/min"
+        android:layout_toRightOf="@id/temperature"/>
+
+    <TextView
+        android:id="@+id/min"
+        android:layout_width="40sp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lat_lbl"
+        android:layout_toRightOf="@id/min_temp_lbl" />
+
+    <TextView
+        android:id="@+id/max_temp_lbl"
+        android:layout_width="85sp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lat_lbl"
+        android:text="@string/max"
+        android:layout_toRightOf="@id/min"/>
+
+    <TextView
+        android:id="@+id/max"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lat_lbl"
+        android:layout_toRightOf="@id/max_temp_lbl" />
+
+    <TextView
+        android:id="@+id/dsr_lbl"
+        android:layout_width="85sp"
+        android:layout_height="wrap_content"
+        android:text="@string/description"
+        android:layout_below="@id/temp_lbl"/>
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/temp_lbl"
+        android:layout_toRightOf="@id/dsr_lbl" />
+
+</RelativeLayout>
