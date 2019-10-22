@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -125,6 +126,30 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject jsonObj = new JSONObject(result);
 
                     // code to parse the JSON objects here
+                    String cityName = jsonObj.getString("name");
+                    Log.d(TAG, "The city name is " + cityName);
+
+                    JSONObject coordinates = jsonObj.getJSONObject("coord");
+                    String latitude = coordinates.getString("lat");
+                    String longitude = coordinates.getString("lon");
+                    Log.d(TAG, "latitude: " + latitude + " " +
+                            " longitude: " + longitude);
+
+                    JSONObject mainObj = jsonObj.getJSONObject("main");
+                    String dayTemp = mainObj.getString("temp");
+                    String minTemp = mainObj.getString("temp_min");
+                    String maxTemp = mainObj.getString("temp_max");
+                    Log.d(TAG, "day temp: " + dayTemp + " " +
+                            " min temp: " + minTemp +
+                            " max temp: " + maxTemp);
+
+                    JSONArray weatherArray = jsonObj.getJSONArray("weather");
+                    JSONObject item1 = weatherArray.getJSONObject(0);
+                    String description = item1.getString("description");
+                    Log.d(TAG, "Today's weather is " + description);
+
+
+
 
 
                 } catch (JSONException e) {
