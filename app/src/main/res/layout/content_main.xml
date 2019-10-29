@@ -25,9 +25,51 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <TextView
+        android:id="@+id/city_lbl"
+        android:layout_width="85sp"
+        android:layout_height="wrap_content"
+        android:text="@string/city" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/city_lbl" />
+
+    <TextView
+        android:id="@+id/lat_lbl"
+        android:layout_width="85sp"
+        android:layout_height="wrap_content"
+        android:text="@string/lat"
+        android:layout_below="@id/city_lbl"/>
+
+    <TextView
+        android:id="@+id/latitude"
+        android:layout_width="70sp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/city_lbl"
+        android:layout_toRightOf="@id/lat_lbl"/>
+
+    <TextView
+        android:id="@+id/lon_lbl"
+        android:layout_width="85sp"
+        android:layout_height="wrap_content"
+        android:text="@string/lon"
+        android:layout_below="@id/city_lbl"
+        android:layout_toRightOf="@id/latitude"/>
+
+    <TextView
+        android:id="@+id/longitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/city_lbl"
+        android:layout_toRightOf="@id/lon_lbl"/>
+
     <ListView
         android:id="@+id/list"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lat_lbl"/>
 
 </RelativeLayout>

@@ -5,6 +5,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -87,7 +91,8 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 // set the URL for the API call - substitute your APPID in the statement below
-                URL url = new URL("http://api.openweathermap.org/data/2.5/weather?id=5118226&units=imperial&APPID=c59c8be06eb651401da3f4e32aa4371e");
+                // URL url = new URL("http://api.openweathermap.org/data/2.5/weather?id=5118226&units=imperial&APPID=c59c8be06eb651401da3f4e32aa4371e");
+                URL url = new URL("http://api.openweathermap.org/data/2.5/forecast/daily?id=5118226&units=imperial&cnt=5&APPID=c59c8be06eb651401da3f4e32aa4371e");
                 // connect to the site to read information
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");
@@ -125,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     JSONObject jsonObj = new JSONObject(result);
 
+                    /*
                     // code to parse the JSON objects here
                     String cityName = jsonObj.getString("name");
                     Log.d(TAG, "The city name is " + cityName);
@@ -147,8 +153,68 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject item1 = weatherArray.getJSONObject(0);
                     String description = item1.getString("description");
                     Log.d(TAG, "Today's weather is " + description);
+                    */
 
+                    // retrieve the city name
+                    JSONObject cityObj = jsonObj.getJSONObject("city");
+                    String cityName = cityObj.getString("name");
+                    ((TextView)findViewById(R.id.name)).setText(cityName);
 
+                    // retrieve the coordinates
+                    JSONObject coordObj = cityObj.getJSONObject("coord");
+                    String latitude = coordObj.getString("lat");
+                    String longitude = coordObj.getString("lon");
+                    ((TextView)findViewById(R.id.longitude)).setText(longitude);
+                    ((TextView)findViewById(R.id.latitude)).setText(latitude);
+
+                    // retrieve the day, min and max temperatures
+                    JSONArray listArray = jsonObj.getJSONArray("list");
+
+                    // retrieve the length of the array from the JSON
+                    int count = jsonObj.getInt("cnt");
+                    Log.d(TAG, "The count is " + count);
+                    for (int i=0; i<count; i++) {
+                        JSONObject dayObj = listArray.getJSONObject(i);
+                        JSONObject tempObj = dayObj.getJSONObject("temp");
+                        String dayTemp = tempObj.getString("day");
+                        String minTemp = tempObj.getString("min");
+                        String maxTemp = tempObj.getString("max");
+
+                        // retrieve the description
+                        JSONArray weatherArray = dayObj.getJSONArray("weather");
+                        JSONObject weatherObj = weatherArray.getJSONObject(0);
+                        String description = weatherObj.getString("description");
+
+                        Log.d(TAG, "city: " + cityName + " lat/lon: " + latitude
+                                + " " + longitude + " day temp: " + dayTemp + " min/max: " +
+                                minTemp + " " + maxTemp + " description: "
+                                + description);
+
+                        // create a HashMap
+                        HashMap<String, String> location = new HashMap<>();
+                        // put the information into the HashMap
+                        //location.put(TAG_CITY, cityName);
+                        //location.put(TAG_LAT, latitude);
+                        //location.put(TAG_LON, longitude);
+                        location.put(TAG_DAY, dayTemp);
+                        location.put(TAG_MAX, maxTemp);
+                        location.put(TAG_MIN, minTemp);
+                        location.put(TAG_DESCRIPTION, description);
+                        // add the HashMap to the ArrayList
+                        locationList.add(location);
+                    }
+                    // create a ListAdapter object that maps the data to the
+                    // views in the list_item layout
+                    ListAdapter adapter = new SimpleAdapter(
+                            MainActivity.this, locationList,
+                            R.layout.list_item,
+                            new String[] {TAG_DAY, TAG_MAX, TAG_MIN, TAG_DESCRIPTION},
+                            new int[] {R.id.temperature, R.id.max, R.id.min, R.id.description});
+
+                    // get access to the list view in the layout file
+                    ListView myList = (ListView)findViewById(R.id.list);
+                    // set the adapter to be displayed in the list view
+                    myList.setAdapter(adapter);
 
 
 
