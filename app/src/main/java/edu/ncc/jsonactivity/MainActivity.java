@@ -91,8 +91,8 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 // set the URL for the API call - substitute your APPID in the statement below
-                // URL url = new URL("http://api.openweathermap.org/data/2.5/weather?id=5118226&units=imperial&APPID=c59c8be06eb651401da3f4e32aa4371e");
-                URL url = new URL("http://api.openweathermap.org/data/2.5/forecast/daily?id=5118226&units=imperial&cnt=5&APPID=c59c8be06eb651401da3f4e32aa4371e");
+                // URL url = new URL("https://api.openweathermap.org/data/2.5/weather?id=5118226&units=imperial&APPID=c59c8be06eb651401da3f4e32aa4371e");
+                URL url = new URL("https://api.openweathermap.org/data/2.5/forecast/daily?id=5118226&units=imperial&cnt=5&APPID=c59c8be06eb651401da3f4e32aa4371e");
                 // connect to the site to read information
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");
